@@ -21,12 +21,55 @@ import utils.DistCalculator
  * @author Álvar Arnaiz-González
  * @version 2.0
  */
-class KNNSequential(k: Int) extends Serializable {
+class KNNSequential(k: Int = 1) extends Serializable {
 
   /**
    * Distance calculator.
    */
   val distCalc = new DistCalculator
+
+
+  /**
+   * Distance between an instance and a collection of centroids.
+   * 
+   * @param Tuple composed of (instance, indx) and an array of centroids.
+   * @return (Indx, Instance, Distances)
+   */
+  def distance(tuple: Tuple2[(Long, Vector), Array[Vector]]): (Long, Vector, List[Double]) = {
+    var indx = tuple._1._1
+    var instance = tuple._1._2
+    var centroids = tuple._2
+    
+    // Compute the distance between the instance and the centroids.
+    var distances = for { actualInst <- centroids }
+      yield (euclideanDistance(instance.toArray, actualInst.toArray))
+
+    (indx, instance, distances.toList)
+  }
+  
+  /**
+   * Distance between an instance and a collection of centroids.
+   * 
+   * @param Tuple composed of instance and an array of centroids.
+   * @return (Instance, Distances)
+   */
+  def distance(tuple: Tuple2[LabeledPoint, Array[Vector]]): (LabeledPoint, List[Double]) = {
+    var instance = tuple._1
+    var centroids = tuple._2
+    
+    // Compute the distance between the instance and the centroids.
+    var distances = for { actualInst <- centroids }
+      yield (euclideanDistance(instance.features.toArray, actualInst.toArray))
+
+    (instance, distances.toList)
+  }
+  
+  
+  def euclideanDistance(point1: Array[Double],
+                        point2: Array[Double]): Double = {
+
+    distCalc.euclideanDistance(point1, point2)
+  }
 
   /**
    * Function for classifying instances.
@@ -41,7 +84,7 @@ class KNNSequential(k: Int) extends Serializable {
   /**
    * Performs an exhaustive kNN search on a given data set.
    * If the training data set is empty, zero is returned.
-   * 
+   *
    * @param trainingData Training data set.
    * @param inst Instance to query.
    */

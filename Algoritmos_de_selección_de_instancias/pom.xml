@@ -1,21 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>InstanceSelector</groupId>
+	<groupId>kNN</groupId>
 	<artifactId>ISAlgorithms</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<name>ISAlgorithms</name>
 	<inceptionYear>2015</inceptionYear>
-	<url>https://bitbucket.org/agr00095/tfg-alg.-seleccion-instancias-spark</url>
-	<description>Proyecto para la ejecución de algoritmos de selección de instancias de manera paralela en Spark.
+	<url>https://github.com/alvarag/kNN-Spark.git</url>
+	<description>Several kNN algorithms for Spark framework.
 Distribución completa.
-Versión Spark: 1.6.1
-Versión Scala: 2.10.6</description>
+Versión Spark: 2.1.0
+Versión Scala: 2.11.8</description>
 
 	<properties>
 		<encoding>UTF-8</encoding>
-		<scala.version>2.10.6</scala.version>
-		<scala.compat.version>2.10</scala.compat.version>
+		<scala.version>2.11.8</scala.version>
 	</properties>
 
 	<dependencies>
@@ -23,32 +22,19 @@ Versión Scala: 2.10.6</description>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- Dependencias sobre Spark -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.10</artifactId>
-			<version>1.6.1</version>
-			<scope>provided</scope>
+			<artifactId>spark-core_2.11</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-mllib_2.10</artifactId>
-			<version>1.6.1</version>
-			<scope>provided</scope>
+			<artifactId>spark-mllib_2.11</artifactId>
+			<version>2.1.0</version>
 		</dependency>
-
-		<!-- Componentes gráficos -->
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-swing</artifactId>
-			<version>2.10.6</version>
-		</dependency>
-
-
 	</dependencies>
-
 
 	<build>
 		<!-- Distribución de directorios -->
@@ -139,7 +125,7 @@ Versión Scala: 2.10.6</description>
 					</execution>
 				</executions>
 				<configuration>
-					<finalName>${project.name}_2_10</finalName>
+					<finalName>${project.name}_2_11</finalName>
 					<transformers>
 						<transformer
 							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">

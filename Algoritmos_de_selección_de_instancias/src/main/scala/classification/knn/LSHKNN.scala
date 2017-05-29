@@ -23,9 +23,9 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
 
 import classification.abstr.TraitClassifier
+import classification.seq.knn.KNNSequential
 import instanceSelection.lshis.ANDsTable
 import utils.partitioner.RandomPartitioner
-import classification.seq.knn.KNNSequential
 
 /**
  * Approximate kNN classifier by using the LSH.
