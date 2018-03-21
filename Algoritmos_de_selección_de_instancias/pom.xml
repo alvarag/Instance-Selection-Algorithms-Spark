@@ -1,16 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>kNN</groupId>
-	<artifactId>ISAlgorithms</artifactId>
-	<version>2.0.0</version>
+	<groupId>LSH</groupId>
+	<version>1.0</version>
 	<name>ISAlgorithms</name>
-	<inceptionYear>2015</inceptionYear>
-	<url>https://github.com/alvarag/kNN-Spark.git</url>
-	<description>Several kNN algorithms for Spark framework.
-Distribución completa.
-Versión Spark: 2.1.0
-Versión Scala: 2.11.8</description>
+	<inceptionYear>2017</inceptionYear>
+	<url>https://github.com/alvarag/</url>
+	<description>LSH noise filter for Spark framework.
+Version Spark: 2.1.0
+Version Scala: 2.11.8</description>
 
 	<properties>
 		<encoding>UTF-8</encoding>
@@ -18,6 +16,14 @@ Versión Scala: 2.11.8</description>
 	</properties>
 
 	<dependencies>
+        <!-- kNN_IS https://github.com/JMailloH/kNN_IS -->
+         <dependency>
+            <groupId>kNN-IS</groupId>
+            <artifactId>kNN-IS</artifactId>
+            <version>3.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/kNN_IS-3.0.jar</systemPath>
+        </dependency>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
@@ -38,7 +44,7 @@ Versión Scala: 2.11.8</description>
 
 	<build>
 		<!-- Distribución de directorios -->
-		<sourceDirectory>src/main/scala</sourceDirectory>
+		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>.</directory>
@@ -111,30 +117,8 @@ Versión Scala: 2.11.8</description>
 				</executions>
 			</plugin>
 
-			<!-- Plugin para la generación de un jar con todas las dependencias incluidas -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.2</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<finalName>${project.name}_2_11</finalName>
-					<transformers>
-						<transformer
-							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-							<mainClass>gui.SparkISGUI</mainClass>
-						</transformer>
-					</transformers>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
+	<artifactId>NoiseLSH</artifactId>
 </project>

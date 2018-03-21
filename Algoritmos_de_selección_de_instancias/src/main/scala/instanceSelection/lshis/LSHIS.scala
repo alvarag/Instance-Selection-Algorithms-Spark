@@ -6,7 +6,6 @@ import java.util.logging.Logger
 
 import scala.collection.mutable.ArrayBuffer
 
-import org.apache.spark.SparkContext
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
@@ -34,7 +33,7 @@ import instanceSelection.abstr.TraitIS
  * @constructor Crea un nuevo algoritmo LSHIS con los parámetros por defecto.
  *
  * @author Alejandro González Rogel
- * @version 1.1.0
+ * @version 1.2.0
  */
 class LSHIS extends TraitIS {
 
@@ -42,6 +41,7 @@ class LSHIS extends TraitIS {
    * Archivo que contiene la frases de log.
    */
   private val bundleName = "resources.loggerStrings.stringsLSHIS";
+
   /**
    * Logger del algoritmo.
    */
@@ -51,14 +51,17 @@ class LSHIS extends TraitIS {
    * Número de funciones-AND.
    */
   var ANDs: Int = 10
+
   /**
    * Número de funciones-OR.
    */
   var ORs: Int = 1
+
   /**
    * Tamaño de los "buckets".
    */
   var width: Double = 1
+
   /**
    * Semilla para los números aleatorios.
    */
@@ -112,7 +115,7 @@ class LSHIS extends TraitIS {
     }
 
     finalResult
-  } // end instSelection
+  }
 
   /**
    * Genera un array de tablas AND, cada una de ellas con funciones hash de
@@ -122,7 +125,7 @@ class LSHIS extends TraitIS {
    * @param  r  Generador de números aleatorios.
    * @return Array con todas las tablas instanciadas
    */
-  private def createANDTables(dim: Int, r: Random): ArrayBuffer[ANDsTable] = {
+  protected def createANDTables(dim: Int, r: Random): ArrayBuffer[ANDsTable] = {
 
     // Creamos tantos componentes AND como sean requeridos.
     var andTables: ArrayBuffer[ANDsTable] = new ArrayBuffer[ANDsTable]
